@@ -42,12 +42,22 @@ final class TweetTableViewCell: UITableViewCell {
         return label
     }()
 
+    private let tweetContentLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "This is my mockup tweet. It is going to take multiple lines. I believe some more text is enough but lets add more anyway... And cheers youtube!"
+        label.numberOfLines = 0
+
+        return label
+    }()
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
         contentView.addSubview(avatarImageView)
         contentView.addSubview(displayNameLabel)
         contentView.addSubview(usernameLabel)
+        contentView.addSubview(tweetContentLabel)
 
         configureConstraints()
     }
@@ -75,8 +85,16 @@ final class TweetTableViewCell: UITableViewCell {
             usernameLabel.centerYAnchor.constraint(equalTo: displayNameLabel.centerYAnchor),
         ]
 
+        let tweetConstraints = [
+            tweetContentLabel.leadingAnchor.constraint(equalTo: displayNameLabel.leadingAnchor),
+            tweetContentLabel.topAnchor.constraint(equalTo: displayNameLabel.bottomAnchor, constant: 10),
+            tweetContentLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
+            tweetContentLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15),
+        ]
+
         NSLayoutConstraint.activate(avatarImageConstraints)
         NSLayoutConstraint.activate(displayNameConstraints)
         NSLayoutConstraint.activate(usernameConstraints)
+        NSLayoutConstraint.activate(tweetConstraints)
     }
 }
