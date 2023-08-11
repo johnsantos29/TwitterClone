@@ -7,10 +7,21 @@
 
 import UIKit
 
+protocol TweetTableViewCellDelegate: AnyObject {
+    func tweetTableViewCellDidTapReply()
+    func tweetTableViewCellDidTapRetweet()
+    func tweetTableViewCellDidTapLike()
+    func tweetTableViewCellDidTapShare()
+}
+
 final class TweetTableViewCell: UITableViewCell {
     static let identifier = "TweetTableViewCell"
 
+    weak var delegate: TweetTableViewCellDelegate?
+
     private let actionSpacing: CGFloat = 60
+
+    // MARK: - Components
 
     private let avatarImageView: UIImageView = {
         let imageView = UIImageView()
@@ -89,6 +100,8 @@ final class TweetTableViewCell: UITableViewCell {
         return button
     }()
 
+    // MARK: - Init
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
@@ -102,12 +115,15 @@ final class TweetTableViewCell: UITableViewCell {
         contentView.addSubview(shareButton)
 
         configureConstraints()
+        configureButtons()
     }
 
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError()
     }
+
+    // MARK: - Constraints
 
     private func configureConstraints() {
         let avatarImageConstraints = [
@@ -162,5 +178,30 @@ final class TweetTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate(retweetButtonConstraints)
         NSLayoutConstraint.activate(likeButtonConstraints)
         NSLayoutConstraint.activate(shareButtonConstraints)
+    }
+
+    // MARK: - Button Actions
+
+    func configureButtons() {
+        replyButton.addTarget(self, action: #selector(didTapReply), for: .touchUpInside)
+        retweetButton.addTarget(self, action: #selector(didTapRetweet), for: .touchUpInside)
+        likeButton.addTarget(self, action: #selector(didTapLike), for: .touchUpInside)
+        shareButton.addTarget(self, action: #selector(didTapShare), for: .touchUpInside)
+    }
+
+    @objc func didTapReply() {
+        delegate?.tweetTableViewCellDidTapReply()
+    }
+
+    @objc func didTapRetweet() {
+        delegate?.tweetTableViewCellDidTapRetweet()
+    }
+
+    @objc func didTapLike() {
+        delegate?.tweetTableViewCellDidTapLike()
+    }
+
+    @objc func didTapShare() {
+        delegate?.tweetTableViewCellDidTapShare()
     }
 }
