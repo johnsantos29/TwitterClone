@@ -20,6 +20,7 @@ final class HomeViewController: UIViewController {
         view.addSubview(timelineTableView)
         timelineTableView.delegate = self
         timelineTableView.dataSource = self
+        configureNavigationBar()
     }
 
     override func viewDidLayoutSubviews() {
@@ -27,7 +28,33 @@ final class HomeViewController: UIViewController {
 
         timelineTableView.frame = view.frame
     }
+
+    // MARK: - Navigation bar
+
+    private func configureNavigationBar() {
+        let size: CGFloat = 36
+
+        // Twitter logo in the middle
+        let logoImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: size, height: size))
+        logoImageView.contentMode = .scaleAspectFill
+        logoImageView.image = UIImage(named: "twitterLogo")
+
+        let middleView = UIView(frame: CGRect(x: 0, y: 0, width: size, height: size))
+        middleView.addSubview(logoImageView)
+        navigationItem.titleView = middleView
+
+        // Profile image
+        let profileImage = UIImage(systemName: "person")
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: profileImage, style: .plain, target: self, action: #selector(didTapProfile))
+    }
+
+    @objc func didTapProfile() {
+        let vc = ProfileViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
+
+// MARK: - Table View Delegate / DataSource
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -46,6 +73,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
 }
+
+// MARK: - TweetTableViewCellDelegate
 
 extension HomeViewController: TweetTableViewCellDelegate {
     func tweetTableViewCellDidTapReply() {
