@@ -18,6 +18,7 @@
 		4578B6292A82CCFC002E0822 /* DirectMessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578B6282A82CCFC002E0822 /* DirectMessagesViewController.swift */; };
 		45A165AF2A84178A00AF24F6 /* TweetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A165AE2A84178A00AF24F6 /* TweetTableViewCell.swift */; };
 		45A165B22A867D9E00AF24F6 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A165B12A867D9E00AF24F6 /* ProfileViewController.swift */; };
+		45A165B42A86DB3700AF24F6 /* ProfileTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A165B32A86DB3700AF24F6 /* ProfileTableHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		4578B6282A82CCFC002E0822 /* DirectMessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectMessagesViewController.swift; sourceTree = "<group>"; };
 		45A165AE2A84178A00AF24F6 /* TweetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetTableViewCell.swift; sourceTree = "<group>"; };
 		45A165B12A867D9E00AF24F6 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		45A165B32A86DB3700AF24F6 /* ProfileTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				45A165AE2A84178A00AF24F6 /* TweetTableViewCell.swift */,
+				45A165B32A86DB3700AF24F6 /* ProfileTableHeaderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -191,6 +194,7 @@
 				4578B60F2A82CA99002E0822 /* SceneDelegate.swift in Sources */,
 				4578B6232A82CCD6002E0822 /* HomeViewController.swift in Sources */,
 				45A165B22A867D9E00AF24F6 /* ProfileViewController.swift in Sources */,
+				45A165B42A86DB3700AF24F6 /* ProfileTableHeaderView.swift in Sources */,
 				4578B6292A82CCFC002E0822 /* DirectMessagesViewController.swift in Sources */,
 				45A165AF2A84178A00AF24F6 /* TweetTableViewCell.swift in Sources */,
 			);
