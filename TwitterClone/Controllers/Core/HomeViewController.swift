@@ -29,6 +29,10 @@ final class HomeViewController: UIViewController {
         timelineTableView.frame = view.frame
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.isHidden = false
+    }
+
     // MARK: - Navigation bar
 
     private func configureNavigationBar() {
