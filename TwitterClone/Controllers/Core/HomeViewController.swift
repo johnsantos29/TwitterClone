@@ -5,6 +5,7 @@
 //  Created by John Erick Santos on 9/8/2023.
 //
 
+import FirebaseAuth
 import UIKit
 
 final class HomeViewController: UIViewController {
@@ -30,7 +31,16 @@ final class HomeViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = false
+
+        // Once view appeared, check if we have a user signed in
+        if Auth.auth().currentUser == nil {
+            let vc = OnboardingViewController()
+            let navigationVc = UINavigationController(rootViewController: vc)
+            navigationVc.modalPresentationStyle = .fullScreen
+            present(navigationVc, animated: false)
+        }
     }
 
     // MARK: - Navigation bar

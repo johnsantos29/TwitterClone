@@ -29,6 +29,7 @@
 		45A165C52A87BC1400AF24F6 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 45A165C42A87BC1400AF24F6 /* FirebaseFirestoreSwift */; };
 		45A165C72A87BC1400AF24F6 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 45A165C62A87BC1400AF24F6 /* FirebaseStorage */; };
 		45A165C92A87BC1400AF24F6 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 45A165C82A87BC1400AF24F6 /* FirebaseStorageCombine-Community */; };
+		45A165CC2A87BE6900AF24F6 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A165CB2A87BE6900AF24F6 /* OnboardingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		45A165B12A867D9E00AF24F6 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		45A165B32A86DB3700AF24F6 /* ProfileTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableHeaderView.swift; sourceTree = "<group>"; };
 		45A165B52A87BAD500AF24F6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		45A165CB2A87BE6900AF24F6 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 		4578B6202A82CCC5002E0822 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				45A165CA2A87BE5400AF24F6 /* Onboarding */,
 				45A165B02A867D8D00AF24F6 /* General */,
 				4578B6212A82CCCA002E0822 /* Core */,
 			);
@@ -136,6 +139,14 @@
 				45A165B12A867D9E00AF24F6 /* ProfileViewController.swift */,
 			);
 			path = General;
+			sourceTree = "<group>";
+		};
+		45A165CA2A87BE5400AF24F6 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				45A165CB2A87BE6900AF24F6 /* OnboardingViewController.swift */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,6 +243,7 @@
 				45A165B22A867D9E00AF24F6 /* ProfileViewController.swift in Sources */,
 				45A165B42A86DB3700AF24F6 /* ProfileTableHeaderView.swift in Sources */,
 				4578B6292A82CCFC002E0822 /* DirectMessagesViewController.swift in Sources */,
+				45A165CC2A87BE6900AF24F6 /* OnboardingViewController.swift in Sources */,
 				45A165AF2A84178A00AF24F6 /* TweetTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
