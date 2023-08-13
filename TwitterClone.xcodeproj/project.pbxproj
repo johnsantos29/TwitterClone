@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4501CA692A88D9B900965226 /* RegisterViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4501CA682A88D9B900965226 /* RegisterViewViewModel.swift */; };
 		4578B60D2A82CA99002E0822 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578B60C2A82CA99002E0822 /* AppDelegate.swift */; };
 		4578B60F2A82CA99002E0822 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578B60E2A82CA99002E0822 /* SceneDelegate.swift */; };
 		4578B6112A82CA99002E0822 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578B6102A82CA99002E0822 /* MainTabBarViewController.swift */; };
@@ -34,6 +35,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4501CA682A88D9B900965226 /* RegisterViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewViewModel.swift; sourceTree = "<group>"; };
 		4578B6092A82CA99002E0822 /* TwitterClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwitterClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4578B60C2A82CA99002E0822 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4578B60E2A82CA99002E0822 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -73,6 +75,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4501CA672A88D9A600965226 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				4501CA682A88D9B900965226 /* RegisterViewViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		4578B6002A82CA99002E0822 = {
 			isa = PBXGroup;
 			children = (
@@ -92,6 +102,7 @@
 		4578B60B2A82CA99002E0822 /* TwitterClone */ = {
 			isa = PBXGroup;
 			children = (
+				4501CA672A88D9A600965226 /* ViewModels */,
 				45A165AD2A84174900AF24F6 /* Views */,
 				4578B6202A82CCC5002E0822 /* Controllers */,
 				4578B60C2A82CA99002E0822 /* AppDelegate.swift */,
@@ -244,6 +255,7 @@
 				4578B6272A82CCF1002E0822 /* NotificationsViewController.swift in Sources */,
 				4578B60F2A82CA99002E0822 /* SceneDelegate.swift in Sources */,
 				4578B6232A82CCD6002E0822 /* HomeViewController.swift in Sources */,
+				4501CA692A88D9B900965226 /* RegisterViewViewModel.swift in Sources */,
 				45A165B22A867D9E00AF24F6 /* ProfileViewController.swift in Sources */,
 				45A165B42A86DB3700AF24F6 /* ProfileTableHeaderView.swift in Sources */,
 				4578B6292A82CCFC002E0822 /* DirectMessagesViewController.swift in Sources */,

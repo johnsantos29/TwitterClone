@@ -5,9 +5,12 @@
 //  Created by John Erick Santos on 13/8/2023.
 //
 
+import Combine
 import UIKit
 
 final class RegisterViewController: UIViewController {
+    private var subscriptions: Set<AnyCancellable> = []
+    
     // MARK: - Components
     
     private let registerTitleLabel: UILabel = {
@@ -56,9 +59,35 @@ final class RegisterViewController: UIViewController {
         button.backgroundColor = UIColor(red: 29/255, green: 161/255, blue: 242/255, alpha: 1)
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 25
+        button.isEnabled = false
         
         return button
     }()
+    
+    // MARK: - View Model
+
+    private var viewModel = RegisterViewViewModel()
+    
+    private func bindViews() {
+        emailTextField.addTarget(self, action: #selector(didChangeEmailField), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(didChangePasswordField), for: .editingChanged)
+        
+        viewModel.$isRegistrationFormValid.sink { [weak self] validationState in
+            self?.registerButton.isEnabled = validationState
+        }.store(in: &subscriptions)
+    }
+    
+    @objc private func didChangeEmailField() {
+        viewModel.email = emailTextField.text
+        viewModel.validateRegistrationForm()
+    }
+    
+    @objc private func didChangePasswordField() {
+        viewModel.password = passwordTextField.text
+        viewModel.validateRegistrationForm()
+    }
+    
+    // MARK: - Life cycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,8 +96,14 @@ final class RegisterViewController: UIViewController {
         view.addSubview(emailTextField)
         view.addSubview(passwordTextField)
         view.addSubview(registerButton)
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapToDismiss)))
         
         configureConstraints()
+        bindViews()
+    }
+    
+    @objc private func didTapToDismiss() {
+        view.endEditing(true)
     }
     
     // MARK: - Constraints
