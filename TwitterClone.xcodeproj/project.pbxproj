@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4501CA692A88D9B900965226 /* RegisterViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4501CA682A88D9B900965226 /* RegisterViewViewModel.swift */; };
+		4501CA6C2A88E74800965226 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4501CA6B2A88E74800965226 /* AuthManager.swift */; };
 		4578B60D2A82CA99002E0822 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578B60C2A82CA99002E0822 /* AppDelegate.swift */; };
 		4578B60F2A82CA99002E0822 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578B60E2A82CA99002E0822 /* SceneDelegate.swift */; };
 		4578B6112A82CA99002E0822 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578B6102A82CA99002E0822 /* MainTabBarViewController.swift */; };
@@ -36,6 +37,7 @@
 
 /* Begin PBXFileReference section */
 		4501CA682A88D9B900965226 /* RegisterViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewViewModel.swift; sourceTree = "<group>"; };
+		4501CA6B2A88E74800965226 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		4578B6092A82CA99002E0822 /* TwitterClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwitterClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4578B60C2A82CA99002E0822 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4578B60E2A82CA99002E0822 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -83,6 +85,14 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		4501CA6A2A88E71D00965226 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				4501CA6B2A88E74800965226 /* AuthManager.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		4578B6002A82CA99002E0822 = {
 			isa = PBXGroup;
 			children = (
@@ -102,6 +112,7 @@
 		4578B60B2A82CA99002E0822 /* TwitterClone */ = {
 			isa = PBXGroup;
 			children = (
+				4501CA6A2A88E71D00965226 /* Networking */,
 				4501CA672A88D9A600965226 /* ViewModels */,
 				45A165AD2A84174900AF24F6 /* Views */,
 				4578B6202A82CCC5002E0822 /* Controllers */,
@@ -249,6 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4578B6252A82CCE6002E0822 /* SearchViewController.swift in Sources */,
+				4501CA6C2A88E74800965226 /* AuthManager.swift in Sources */,
 				4578B6112A82CA99002E0822 /* MainTabBarViewController.swift in Sources */,
 				4578B60D2A82CA99002E0822 /* AppDelegate.swift in Sources */,
 				45A165CE2A87CDD500AF24F6 /* RegisterViewController.swift in Sources */,

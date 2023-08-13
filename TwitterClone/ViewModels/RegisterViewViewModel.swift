@@ -5,12 +5,17 @@
 //  Created by John Erick Santos on 13/8/2023.
 //
 
+import Combine
+import Firebase
 import Foundation
 
 final class RegisterViewViewModel: ObservableObject {
+    private var subscriptions: Set<AnyCancellable> = []
+    
     @Published var email: String?
     @Published var password: String?
     @Published var isRegistrationFormValid: Bool = false
+    @Published var user: User?
 
     func validateRegistrationForm() {
         guard let email = email, let password = password else {
@@ -25,5 +30,16 @@ final class RegisterViewViewModel: ObservableObject {
 
         let emailPred = NSPredicate(format: "SELF MATCHES %@", emailRegEx)
         return emailPred.evaluate(with: email)
+    }
+    
+    func createUser() {
+        guard let email = email, let password = password else { return }
+        
+        AuthManager.shared.registerUser(with: email, password: password)
+            .sink { _ in
+                
+            } receiveValue: { [weak self] user in
+                self?.user = user
+            }.store(in: &subscriptions)
     }
 }

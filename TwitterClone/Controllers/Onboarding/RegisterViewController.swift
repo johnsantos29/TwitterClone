@@ -75,6 +75,10 @@ final class RegisterViewController: UIViewController {
         viewModel.$isRegistrationFormValid.sink { [weak self] validationState in
             self?.registerButton.isEnabled = validationState
         }.store(in: &subscriptions)
+        
+        viewModel.$user.sink { [weak self] user in
+            print(user)
+        }.store(in: &subscriptions)
     }
     
     @objc private func didChangeEmailField() {
@@ -98,12 +102,18 @@ final class RegisterViewController: UIViewController {
         view.addSubview(registerButton)
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapToDismiss)))
         
+        registerButton.addTarget(self, action: #selector(didTapRegister), for: .touchUpInside)
+        
         configureConstraints()
         bindViews()
     }
     
     @objc private func didTapToDismiss() {
         view.endEditing(true)
+    }
+    
+    @objc private func didTapRegister() {
+        viewModel.createUser()
     }
     
     // MARK: - Constraints
