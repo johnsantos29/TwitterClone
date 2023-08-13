@@ -65,7 +65,16 @@ final class OnboardingViewController: UIViewController {
         view.addSubview(promptLabel)
         view.addSubview(loginButton)
 
+        createAccountButton.addTarget(self, action: #selector(didTapCreateAccount), for: .touchUpInside)
+
         configureConstraints()
+    }
+
+    // MARK: - Button Actions
+
+    @objc private func didTapCreateAccount() {
+        let vc = RegisterViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
 
     // MARK: - Constraints
