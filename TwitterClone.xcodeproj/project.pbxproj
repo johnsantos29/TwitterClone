@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4501CA692A88D9B900965226 /* RegisterViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4501CA682A88D9B900965226 /* RegisterViewViewModel.swift */; };
+		4501CA692A88D9B900965226 /* AuthenticationViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4501CA682A88D9B900965226 /* AuthenticationViewViewModel.swift */; };
 		4501CA6C2A88E74800965226 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4501CA6B2A88E74800965226 /* AuthManager.swift */; };
+		4501CA6E2A8A2A5A00965226 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4501CA6D2A8A2A5A00965226 /* LoginViewController.swift */; };
 		4578B60D2A82CA99002E0822 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578B60C2A82CA99002E0822 /* AppDelegate.swift */; };
 		4578B60F2A82CA99002E0822 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578B60E2A82CA99002E0822 /* SceneDelegate.swift */; };
 		4578B6112A82CA99002E0822 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578B6102A82CA99002E0822 /* MainTabBarViewController.swift */; };
@@ -36,8 +37,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4501CA682A88D9B900965226 /* RegisterViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewViewModel.swift; sourceTree = "<group>"; };
+		4501CA682A88D9B900965226 /* AuthenticationViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewViewModel.swift; sourceTree = "<group>"; };
 		4501CA6B2A88E74800965226 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		4501CA6D2A8A2A5A00965226 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		4578B6092A82CA99002E0822 /* TwitterClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwitterClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4578B60C2A82CA99002E0822 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4578B60E2A82CA99002E0822 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -80,7 +82,7 @@
 		4501CA672A88D9A600965226 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				4501CA682A88D9B900965226 /* RegisterViewViewModel.swift */,
+				4501CA682A88D9B900965226 /* AuthenticationViewViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -170,6 +172,7 @@
 			children = (
 				45A165CB2A87BE6900AF24F6 /* OnboardingViewController.swift */,
 				45A165CD2A87CDD500AF24F6 /* RegisterViewController.swift */,
+				4501CA6D2A8A2A5A00965226 /* LoginViewController.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -262,12 +265,13 @@
 				4578B6252A82CCE6002E0822 /* SearchViewController.swift in Sources */,
 				4501CA6C2A88E74800965226 /* AuthManager.swift in Sources */,
 				4578B6112A82CA99002E0822 /* MainTabBarViewController.swift in Sources */,
+				4501CA6E2A8A2A5A00965226 /* LoginViewController.swift in Sources */,
 				4578B60D2A82CA99002E0822 /* AppDelegate.swift in Sources */,
 				45A165CE2A87CDD500AF24F6 /* RegisterViewController.swift in Sources */,
 				4578B6272A82CCF1002E0822 /* NotificationsViewController.swift in Sources */,
 				4578B60F2A82CA99002E0822 /* SceneDelegate.swift in Sources */,
 				4578B6232A82CCD6002E0822 /* HomeViewController.swift in Sources */,
-				4501CA692A88D9B900965226 /* RegisterViewViewModel.swift in Sources */,
+				4501CA692A88D9B900965226 /* AuthenticationViewViewModel.swift in Sources */,
 				45A165B22A867D9E00AF24F6 /* ProfileViewController.swift in Sources */,
 				45A165B42A86DB3700AF24F6 /* ProfileTableHeaderView.swift in Sources */,
 				4578B6292A82CCFC002E0822 /* DirectMessagesViewController.swift in Sources */,
