@@ -77,7 +77,9 @@ final class RegisterViewController: UIViewController {
         }.store(in: &subscriptions)
         
         viewModel.$user.sink { [weak self] user in
-            print(user)
+            guard user != nil,
+                  let vc = self?.navigationController?.viewControllers.first else { return }
+            vc.dismiss(animated: true)
         }.store(in: &subscriptions)
     }
     
