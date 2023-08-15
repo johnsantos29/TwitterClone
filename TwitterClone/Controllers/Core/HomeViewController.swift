@@ -5,10 +5,13 @@
 //  Created by John Erick Santos on 9/8/2023.
 //
 
+import Combine
 import FirebaseAuth
 import UIKit
 
 final class HomeViewController: UIViewController {
+    private var subscriptions: Set<AnyCancellable> = []
+
     // MARK: - Components
 
     private let timelineTableView: UITableView = {
@@ -17,6 +20,25 @@ final class HomeViewController: UIViewController {
 
         return tableView
     }()
+
+    // MARK: - View Model
+
+    private var viewModel = HomeViewViewModel()
+
+    private func bindViews() {
+        viewModel.$user.sink { [weak self] user in
+            guard let user = user else { return }
+
+            if !user.isUserOnboarded {
+                self?.completeOnboarding()
+            }
+        }.store(in: &subscriptions)
+    }
+
+    private func completeOnboarding() {
+        let vc = ProfileDataFormViewController()
+        present(vc, animated: true)
+    }
 
     // MARK: - Life cycles
 
@@ -30,6 +52,8 @@ final class HomeViewController: UIViewController {
             image: UIImage(systemName: "rectangle.portrait.and.arrow.right"),
             style: .plain, target: self,
             action: #selector(didTapSignOut))
+
+        bindViews()
     }
 
     override func viewDidLayoutSubviews() {
@@ -44,6 +68,7 @@ final class HomeViewController: UIViewController {
 
         // Once view appeared, check if we have a user signed in
         handleAuthentication()
+        viewModel.retrieveUser()
     }
 
     private func handleAuthentication() {
