@@ -185,7 +185,7 @@ class ProfileDataFormViewController: UIViewController {
     }
     
     @objc private func didTapSubmit() {
-        print("Submit tapped")
+        viewModel.uploadAvatar()
     }
     
     // MARK: - Constraints
