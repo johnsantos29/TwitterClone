@@ -5,9 +5,13 @@
 //  Created by John Erick Santos on 16/8/2023.
 //
 
+import Combine
+import PhotosUI
 import UIKit
 
 class ProfileDataFormViewController: UIViewController {
+    private var subscriptions: Set<AnyCancellable> = []
+    
     // MARK: - Components
     
     private let scrollView: UIScrollView = {
@@ -39,7 +43,7 @@ class ProfileDataFormViewController: UIViewController {
         imageView.image = UIImage(systemName: "camera.fill")
         imageView.tintColor = .gray
         imageView.isUserInteractionEnabled = true
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         
         return imageView
     }()
@@ -94,6 +98,44 @@ class ProfileDataFormViewController: UIViewController {
         return textView
     }()
     
+    private let submitButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Submit", for: .normal)
+        button.tintColor = .white
+        button.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
+        button.backgroundColor = UIColor(red: 29/255, green: 161/255, blue: 242/255, alpha: 1)
+        button.layer.masksToBounds = true
+        button.layer.cornerRadius = 25
+        button.isEnabled = false
+        
+        return button
+    }()
+    
+    // MARK: - View model
+
+    private let viewModel = ProfileDataFormViewViewModel()
+    
+    private func bindViews() {
+        displayNameTextField.addTarget(self, action: #selector(didUpdateDisplayName), for: .editingChanged)
+        usernameTextField.addTarget(self, action: #selector(didUpdateUsername), for: .editingChanged)
+        
+        viewModel.$isFormValid.sink { [weak self] buttonState in
+            self?.submitButton.isEnabled = buttonState
+        }
+        .store(in: &subscriptions)
+    }
+    
+    @objc private func didUpdateDisplayName() {
+        viewModel.displayName = displayNameTextField.text
+        viewModel.validateUserProfileForm()
+    }
+    
+    @objc private func didUpdateUsername() {
+        viewModel.username = usernameTextField.text
+        viewModel.validateUserProfileForm()
+    }
+    
     // MARK: - Life cycles
     
     override func viewDidLoad() {
@@ -107,12 +149,43 @@ class ProfileDataFormViewController: UIViewController {
         scrollView.addSubview(displayNameTextField)
         scrollView.addSubview(usernameTextField)
         scrollView.addSubview(bioTextView)
+        scrollView.addSubview(submitButton)
         
         isModalInPresentation = true
         
+        // delegates
+        displayNameTextField.delegate = self
+        usernameTextField.delegate = self
         bioTextView.delegate = self
         
+        // gesture recognizers
+        avatarPlaceholderImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapToUpload)))
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapToDismiss)))
+        
+        submitButton.addTarget(self, action: #selector(didTapSubmit), for: .touchUpInside)
+        
         configureConstraints()
+        bindViews()
+    }
+    
+    @objc private func didTapToUpload() {
+        var config = PHPickerConfiguration()
+        config.filter = .images
+        config.selectionLimit = 1
+        
+        let picker = PHPickerViewController(configuration: config)
+        picker.delegate = self
+        
+        present(picker, animated: true)
+    }
+    
+    @objc private func didTapToDismiss() {
+        view.endEditing(true)
+        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+    }
+    
+    @objc private func didTapSubmit() {
+        print("Submit tapped")
     }
     
     // MARK: - Constraints
@@ -158,18 +231,28 @@ class ProfileDataFormViewController: UIViewController {
             bioTextView.heightAnchor.constraint(equalToConstant: 150),
         ]
         
+        let submitButtonConstraints = [
+            submitButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            submitButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            submitButton.heightAnchor.constraint(equalToConstant: 50),
+            submitButton.bottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor, constant: -20),
+        ]
+        
         NSLayoutConstraint.activate(scrollViewConstraints)
         NSLayoutConstraint.activate(hintLabelConstraints)
         NSLayoutConstraint.activate(avatarPlaceholderImageViewConstraints)
         NSLayoutConstraint.activate(displayNameTextFieldConstraints)
         NSLayoutConstraint.activate(usernameTextFieldConstraints)
         NSLayoutConstraint.activate(bioTextViewConstraints)
+        NSLayoutConstraint.activate(submitButtonConstraints)
     }
 }
 
 extension ProfileDataFormViewController: UITextViewDelegate {
     // clear any place holder texts in the textview
     func textViewDidBeginEditing(_ textView: UITextView) {
+        scrollView.setContentOffset(CGPoint(x: 0, y: textView.frame.origin.y - 100), animated: true)
+        
         if textView.textColor == .gray {
             textView.textColor = .label
             textView.text = ""
@@ -181,6 +264,36 @@ extension ProfileDataFormViewController: UITextViewDelegate {
         if textView.text.isEmpty {
             textView.text = "Tell the world about yourself"
             textView.textColor = .gray
+        }
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        viewModel.bio = textView.text
+        viewModel.validateUserProfileForm()
+    }
+}
+
+extension ProfileDataFormViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        scrollView.setContentOffset(CGPoint(x: 0, y: textField.frame.origin.y - 100), animated: true)
+    }
+}
+
+extension ProfileDataFormViewController: PHPickerViewControllerDelegate {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        picker.dismiss(animated: true)
+        
+        for result in results {
+            result.itemProvider.loadObject(ofClass: UIImage.self) { [weak self] object, _ in
+                if let image = object as? UIImage {
+                    DispatchQueue.main.async {
+                        self?.avatarPlaceholderImageView.image = image
+                        
+                        self?.viewModel.imageData = image
+                        self?.viewModel.validateUserProfileForm()
+                    }
+                }
+            }
         }
     }
 }
